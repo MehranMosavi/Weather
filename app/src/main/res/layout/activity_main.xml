@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@drawable/splashscreen_background">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:text="WEATHER"
+        android:textColor="#114978"
+        android:textSize="70sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="40dp"
+        android:text="Please Enter latitudes and longitudes"
+        android:textColor="#114978"
+        android:textSize="40sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/mainActivity_tb_Latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:layout_weight="2"
+            android:checked="true"
+            android:textOff="South"
+            android:textOn="North" />
+
+        <EditText
+            android:id="@+id/mainActivity_et_Latitude"
+            android:layout_weight="1"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="#FFF"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="North or South" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ToggleButton
+            android:id="@+id/mainActivity_tb_Longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:layout_weight="2"
+            android:checked="true"
+            android:text="ToggleButton"
+            android:textOff="West"
+            android:textOn="East" />
+
+        <EditText
+            android:id="@+id/mainActivity_et_Longitude"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:background="#FFF"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="East or West" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnEnter"
+        android:background="#FFF"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="ENTER" />
+
+</LinearLayout>
+
