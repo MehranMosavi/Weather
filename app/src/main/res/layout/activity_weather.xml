@@ -16,7 +16,7 @@
         android:text="CURRENT WEATHER"
         android:gravity="center"
         android:textColor="#000"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="60dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
@@ -35,6 +35,7 @@
         android:textStyle="bold"
         android:textSize="20sp"/>
     <TextView
+        android:id="@+id/weatherActivity_txt_CityName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Tehran"
@@ -46,20 +47,179 @@
         android:layout_marginBottom="8dp"
         android:textStyle="bold"
         android:textSize="60sp"/>
-
     <TextView
-        android:id="@+id/txtlat"
+        android:id="@+id/weatherActivity_txt_Temp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:text="30 ℃"
+        android:gravity="center"
+        android:textColor="#000"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="8dp"
+        android:textStyle="bold"
+        android:textSize="40sp"/>
 
-    <TextView
-        android:id="@+id/txtlon"
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pressure:" />
+
+        <TextView
+            android:id="@+id/weatherActivity_txt_Pressure"
+            android:layout_marginRight="16dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Good"
+            android:textAlignment="textEnd" />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Description:" />
+
+            <TextView
+                android:id="@+id/weatherActivity_txt_Description"
+                android:layout_marginRight="16dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Good"
+                android:textAlignment="textEnd" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Wind Speed:" />
+
+            <TextView
+                android:id="@+id/weatherActivity_txt_WindSpeed"
+                android:layout_marginRight="16dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Good"
+                android:textAlignment="textEnd" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Location:" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Latitude:" />
+
+            <TextView
+                android:id="@+id/weatherActivity_txt_Latitude"
+                android:layout_marginRight="16dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Good"
+                android:textAlignment="textEnd" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Longitude:" />
+
+            <TextView
+                android:id="@+id/weatherActivity_txt_Longitude"
+                android:layout_marginRight="16dp"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Good"
+                android:textAlignment="textEnd" />
+        </LinearLayout>
+
+
 
 
 </LinearLayout>

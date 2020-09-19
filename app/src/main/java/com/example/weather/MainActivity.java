@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnEnter;
     ToggleButton tbLatitude,tbLongitude;
     EditText etLatitude,etLongitude;
-    float lat,lon;
+    double lat,lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +31,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+
+                lat = Double.parseDouble(etLatitude.getText().toString());
+                lon = Double.parseDouble(etLongitude.getText().toString());
+
                 if (tbLatitude.isChecked() == false)
                     lat *= -1;
-                if(tbLongitude.isChecked() == false)
-                    lon *=-1;
-                intent.putExtra(KEY_LAT,lat);
-                intent.putExtra(KEY_LON,lon);
+
+                if (tbLongitude.isChecked() == false)
+                    lon *= -1;
+
+                intent.putExtra(KEY_LAT, lat);
+                intent.putExtra(KEY_LON, lon);
+
                 startActivity(intent);
             }
         });
@@ -49,9 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         tbLatitude = findViewById(R.id.mainActivity_tb_Latitude);
         tbLongitude = findViewById(R.id.mainActivity_tb_Longitude);
-
-        lat = Float.parseFloat(etLatitude.getText().toString());
-        lon = Float.parseFloat(etLongitude.getText().toString());
 
         btnEnter = findViewById(R.id.btnEnter);
     }

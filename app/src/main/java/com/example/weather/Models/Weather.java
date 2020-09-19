@@ -11,10 +11,6 @@ public class Weather {
     @Expose
     private int id;
 
-    @SerializedName("timezone")
-    @Expose
-    private int timezone;
-
     @SerializedName("name")
     @Expose
     private String name;
@@ -23,9 +19,12 @@ public class Weather {
     @Expose
     private Main main;
 
-    public Weather(int id, int timezone, String name) {
+    @SerializedName("wind")
+    @Expose
+    private Wind wind;
+
+    public Weather(int id, String name) {
         this.id = id;
-        this.timezone = timezone;
         this.name = name;
     }
 
@@ -35,14 +34,6 @@ public class Weather {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getTimezone() {
-        return timezone;
-    }
-
-    public void setTimezone(int timezone) {
-        this.timezone = timezone;
     }
 
     public String getName() {
@@ -55,5 +46,9 @@ public class Weather {
 
     public Main getMain() {
         return main;
+    }
+
+    public Wind getWind() {
+        return wind;
     }
 }
