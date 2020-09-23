@@ -29,6 +29,8 @@ public class WeatherActivity extends AppCompatActivity {
     double lat,lon;
     TextView txtCityName, txtTemp, txtPressure, txtDescription, txtWindSpeed, txtLat, txtLon;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,30 +40,21 @@ public class WeatherActivity extends AppCompatActivity {
 
         WeatherService service = APIUtils.getWeatherService();
         Call<Weather> call = null;
-
-        call = service.getCurrentWeather(lat,lon,OPENWEATHERMAP_TOKEN,"metric");
-
+        call = service.getCurrentWeather(35,139,OPENWEATHERMAP_TOKEN,"metric");
+        assert call !=null;
         call.enqueue(new Callback<Weather>() {
             @Override
             public void onResponse(Call<Weather> call, Response<Weather> response) {
-                if(response.isSuccessful())
+                if (response.isSuccessful())
                 {
                     Weather weather = response.body();
-                    txtCityName.setText(weather.getName());
-                    txtTemp.setText(weather.getMain().getTemp() + " ℃");
-                    txtPressure.setText(weather.getMain().getPressure() + "");
-                    txtDescription.setText("NULL");
-                    txtWindSpeed.setText(weather.getWind().getSpeed()+"");
-                }
-                else
-                {
-                    Toast.makeText(WeatherActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+                    txtCityName.setText(weather.getName()+" "+ weather.getId());
                 }
             }
 
             @Override
             public void onFailure(Call<Weather> call, Throwable t) {
-                Toast.makeText(WeatherActivity.this, "NOT CONNECTED", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -81,8 +74,8 @@ public class WeatherActivity extends AppCompatActivity {
         lat = getIntent().getDoubleExtra(KEY_LAT,0);
         lon = getIntent().getDoubleExtra(KEY_LON,0);
 
-        txtLat.setText(""+lat);
-        txtLon.setText(""+lon);
+        txtLat.setText("" + lat);
+        txtLon.setText("" + lon);
     }
 
 }

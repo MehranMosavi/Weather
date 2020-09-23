@@ -12,6 +12,7 @@ public class Main {
     @Expose
     private double pressure;
 
+
     public double getTemp() {
         return temp;
     }
