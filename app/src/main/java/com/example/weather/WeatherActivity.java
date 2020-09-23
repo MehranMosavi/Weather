@@ -25,11 +25,8 @@ import static com.example.weather.Common.OPENWEATHERMAP_TOKEN;
 
 public class WeatherActivity extends AppCompatActivity {
 
-
     double lat,lon;
     TextView txtCityName, txtTemp, txtPressure, txtDescription, txtWindSpeed, txtLat, txtLon;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +37,7 @@ public class WeatherActivity extends AppCompatActivity {
 
         WeatherService service = APIUtils.getWeatherService();
         Call<Weather> call = null;
-        call = service.getCurrentWeather(35,139,OPENWEATHERMAP_TOKEN,"metric");
+        call = service.getCurrentWeather(lat,lon,OPENWEATHERMAP_TOKEN,"metric");
         assert call !=null;
         call.enqueue(new Callback<Weather>() {
             @Override
@@ -48,7 +45,7 @@ public class WeatherActivity extends AppCompatActivity {
                 if (response.isSuccessful())
                 {
                     Weather weather = response.body();
-                    txtCityName.setText(weather.getName()+" "+ weather.getId());
+                    txtCityName.setText(weather.getName());
                 }
             }
 
