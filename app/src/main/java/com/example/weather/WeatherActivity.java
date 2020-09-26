@@ -34,33 +34,24 @@ public class WeatherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_weather);
 
         init();
-        Log.d("MMM" , "TEST1");
+
         WeatherService service = APIUtils.getWeatherService();
-        Log.d("MMM" , "TEST2");
         Call<Weather> call = null;
-        Log.d("MMM" , "TEST3");
         call = service.getCurrentWeather(lat,lon,OPENWEATHERMAP_TOKEN,"metric");
-        Log.d("MMM" , "TEST4");
         assert call !=null;
-        Log.d("MMM" , "TEST5");
         call.enqueue(new Callback<Weather>() {
             @Override
             public void onResponse(Call<Weather> call, Response<Weather> response) {
                 if (response.isSuccessful())
                 {
-                    Log.d("MMM" , "TEST6");
                     Weather weather = response.body();
                     txtCityName.setText(weather.getName());
-                }
-                else
-                {
-                    Log.d("MMM" , "TEST7");
                 }
             }
 
             @Override
             public void onFailure(Call<Weather> call, Throwable t) {
-                Log.d("MMM" , "TEST8");
+
             }
         });
 
