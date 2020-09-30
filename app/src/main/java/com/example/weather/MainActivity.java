@@ -4,19 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import static com.example.weather.Common.LANG_KEY;
+import static com.example.weather.Common.LAT_KEY;
+import static com.example.weather.Common.LON_KEY;
+import static com.example.weather.Common.UNIT_KEY;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText lat, lon;
+    EditText etLat, etLon;
+    ToggleButton tbLang, tbUnit, tbLat, tbLon;
+    TextView tvUnit, tvLang;
     Button button;
-
-    public static String LAT_KEY = "com.example.retro.LAT";
-    public static String LON_KEY = "com.example.retro.LON";
+    Double lat,lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +34,64 @@ public class MainActivity extends AppCompatActivity {
 
     private void init()
     {
-        lat = findViewById(R.id.mainActivity_et_Latitude);
-        lon = findViewById(R.id.mainActivity_et_Longitude);
+        tbLang = findViewById(R.id.mainActivity_tb_Language);
+        tbUnit = findViewById(R.id.mainActivity_tb_Unit);
+        tbLat = findViewById(R.id.mainActivity_tb_Latitude);
+        tbLon = findViewById(R.id.mainActivity_tb_Longitude);
+        etLat = findViewById(R.id.mainActivity_et_Latitude);
+        etLon = findViewById(R.id.mainActivity_et_Longitude);
         button = findViewById(R.id.btnEnter);
+
+        lat = Double.parseDouble(etLat.getText().toString());
+        lon = Double.parseDouble(etLon.getText().toString());
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, WeatherActivity.class).putExtra(LAT_KEY, lat.getText().toString()).putExtra(LON_KEY, lon.getText().toString()));
+                Intent intent = new Intent(MainActivity.this,WeatherActivity.class);
+
+                check();
+
+                intent.putExtra(UNIT_KEY,tvUnit.getText().toString());
+                intent.putExtra(LANG_KEY,tvLang.getText().toString());
+                intent.putExtra(LAT_KEY,lat);
+                intent.putExtra(LON_KEY,lon);
+
+                startActivity(intent);
             }
         });
+    }
+
+    private void check()
+    {
+
+        if (tbLat.isChecked()==false)
+        {
+            lat *= -1;
+        }
+
+        if (tbLon.isChecked()==false)
+        {
+            lon *= -1;
+        }
+
+        if (tbLang.isChecked() == false)
+        {
+            tvLang.setText("en");
+        }
+        else
+        {
+            tvLang.setText("fa");
+        }
+
+        if (tbUnit.isChecked() == false)
+        {
+            tvLang.setText("imperial");
+        }
+        else
+        {
+            tvLang.setText("metric");
+        }
     }
 }

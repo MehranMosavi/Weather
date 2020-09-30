@@ -19,15 +19,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.weather.Common.LANG_KEY;
 import static com.example.weather.Common.OPENWEATHERMAP_TOKEN;
-import static com.example.weather.MainActivity.LAT_KEY;
-import static com.example.weather.MainActivity.LON_KEY;
+import static com.example.weather.Common.LAT_KEY;
+import static com.example.weather.Common.LON_KEY;
+import static com.example.weather.Common.UNIT_KEY;
 
 public class WeatherActivity extends AppCompatActivity {
 
     Intent intent;
-    TextView name, temp, press, humidity;
-
+    TextView txtName, txtTemp, txtPress, txtDescription, txtWindSpeed, txtLat, txtLon;
+    String lat, lon;
     Weather weather;
 
     @Override
@@ -41,17 +43,23 @@ public class WeatherActivity extends AppCompatActivity {
     private void init()
     {
         intent = getIntent();
-        name = findViewById(R.id.weatherActivity_txt_CityName);
-        temp = findViewById(R.id.weatherActivity_txt_Temp);
-        press = findViewById(R.id.weatherActivity_txt_Pressure);
-        humidity = findViewById(R.id.weatherActivity_txt_WindSpeed);
-        humidity = findViewById(R.id.weatherActivity_txt_Description);
+        txtName = findViewById(R.id.weatherActivity_txt_CityName);
+        txtTemp = findViewById(R.id.weatherActivity_txt_Temp);
+        txtPress = findViewById(R.id.weatherActivity_txt_Pressure);
+        txtDescription = findViewById(R.id.weatherActivity_txt_Description);
+        txtWindSpeed = findViewById(R.id.weatherActivity_txt_WindSpeed);
+        txtLat = findViewById(R.id.weatherActivity_txt_Latitude);
+        txtLon = findViewById(R.id.weatherActivity_txt_Longitude);
+
+        lat = String.valueOf(intent.getStringExtra(LAT_KEY));
+        lon = String.valueOf(intent.getStringExtra(LON_KEY));
+
     }
 
     private void getData()
     {
         WeatherService service = APIUtils.getWeatherService();
-        Call<Weather> call = service.getCurrentWeather(Double.parseDouble(intent.getStringExtra(MainActivity.LAT_KEY)), Double.parseDouble(intent.getStringExtra(MainActivity.LON_KEY)), OPENWEATHERMAP_TOKEN, "metric");
+        Call<Weather> call = service.getCurrentWeather(lat, lon, OPENWEATHERMAP_TOKEN, UNIT_KEY,LANG_KEY);
         call.enqueue(new Callback<Weather>() {
             @Override
             public void onResponse(Call<Weather> call, Response<Weather> response) {
@@ -75,9 +83,10 @@ public class WeatherActivity extends AppCompatActivity {
 
     private void setData()
     {
-        name.setText(weather.getName());
-        temp.setText(String.valueOf(weather.getMain().getTemp()));
-        press.setText(String.valueOf(weather.getMain().getPressure()));
-        humidity.setText(String.valueOf(weather.getMain().getHumidity()));
+        txtName.setText(weather.getName());
+        txtTemp.setText(String.valueOf(weather.getMain().getTemp()));
+        txtPress.setText(String.valueOf(weather.getMain().getPressure()));
+        txtDescription.setText("Null");
+        txtWindSpeed.setText(String.valueOf(weather.getWind().ge);
     }
 }
