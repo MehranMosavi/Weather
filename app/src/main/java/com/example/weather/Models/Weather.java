@@ -21,7 +21,7 @@ public class Weather implements Serializable {
 
     @SerializedName("wind")
     @Expose
-    private Main wind;
+    private Wind wind;
 
     public Weather(int id, int timezone, String name) {
         this.id = id;
@@ -48,7 +48,7 @@ public class Weather implements Serializable {
         return main;
     }
 
-    public Main getWind() {
+    public Wind getWind() {
         return wind;
     }
 }

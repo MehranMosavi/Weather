@@ -87,6 +87,9 @@ public class WeatherActivity extends AppCompatActivity {
         txtTemp.setText(String.valueOf(weather.getMain().getTemp()));
         txtPress.setText(String.valueOf(weather.getMain().getPressure()));
         txtDescription.setText("Null");
-        txtWindSpeed.setText(String.valueOf(weather.getWind().ge);
+        txtWindSpeed.setText(String.valueOf(weather.getWind().getSpeed()));
+
+        txtLat.setText(lat);
+        txtLon.setText(lon);
     }
 }
