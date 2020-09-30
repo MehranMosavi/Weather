@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import org.w3c.dom.Text;
+
 import static com.example.weather.Common.LANG_KEY;
 import static com.example.weather.Common.LAT_KEY;
 import static com.example.weather.Common.LON_KEY;
@@ -21,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
     EditText etLat, etLon;
     ToggleButton tbLang, tbUnit, tbLat, tbLon;
     Button button;
-    Double lat,lon;
+    String tvLang = null;
+    String tvUnit = null;
+    Double lat, lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,56 +33,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
 
-                if (tbLat.isChecked())
-                {
-                    lat *= -1;
-                }
-
-                if (tbLon.isChecked())
-                {
-                    lon *= -1;
-                }
-
-//                if (tbLang.isChecked())
-//                {
-//                    tvLang.setText("en");
-//                }
-//                else
-//                {
-//                    tvLang.setText("fa");
-//                }
-//
-//                if (tbUnit.isChecked())
-//                {
-//                    tvLang.setText("imperial");
-//                }
-//                else
-//                {
-//                    tvLang.setText("metric");
-//                }
-//
-//                intent.putExtra(UNIT_KEY,tvUnit.getText().toString());
-//                intent.putExtra(LANG_KEY,tvLang.getText().toString());
-                intent.putExtra(LAT_KEY,lat);
-                intent.putExtra(LON_KEY,lon);
-
-                Log.d("MMM",lat.toString());
-                Log.d("MMM",lon.toString());
-//                Log.d("MMM",tvLang.toString());
-//                Log.d("MMM",tvUnit.toString());
-
-                startActivity(intent);
-            }
-        });
     }
 
-    private void init()
-    {
+    private void init() {
         tbLang = findViewById(R.id.mainActivity_tb_Language);
         tbUnit = findViewById(R.id.mainActivity_tb_Unit);
         tbLat = findViewById(R.id.mainActivity_tb_Latitude);
@@ -87,8 +45,52 @@ public class MainActivity extends AppCompatActivity {
         etLon = findViewById(R.id.mainActivity_et_Longitude);
         button = findViewById(R.id.btnEnter);
 
-        lat = Double.parseDouble(etLat.getText().toString());
-        lon = Double.parseDouble(etLon.getText().toString());
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                lat = Double.parseDouble(etLat.getText().toString());
+                lon = Double.parseDouble(etLon.getText().toString());
+
+                if (!tbLat.isChecked())
+                {
+                    lat *= -1;
+                }
+
+                if (!tbLon.isChecked())
+                {
+                    lon *= -1;
+                }
+
+                if (tbLang.isChecked())
+                {
+                    tvLang = "fa";
+                }
+                else
+                {
+                    tvLang = "en";
+                }
+
+                if (tbUnit.isChecked())
+                {
+                    tvUnit = "metric";
+                }
+                else
+                {
+                    tvUnit = "imperial";
+                }
+
+                Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+
+                intent.putExtra(UNIT_KEY, tvUnit);
+                intent.putExtra(LANG_KEY, tvLang);
+                intent.putExtra(LAT_KEY, lat);
+                intent.putExtra(LON_KEY, lon);
+
+                Log.d("MMM", "Test");
+
+                startActivity(intent);
+            }
+        });
     }
 }

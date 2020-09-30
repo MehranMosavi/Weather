@@ -9,6 +9,17 @@
     android:background="@drawable/weather_background">
 
     <TextView
+        android:id="@+id/main_txtLang"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/main_txtUnit"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -87,6 +98,7 @@
             android:background="#FFF"
             android:ems="10"
             android:gravity="center"
+            android:text="35"
             android:hint="Latitude" />
     </LinearLayout>
 
@@ -116,6 +128,7 @@
             android:layout_margin="15dp"
             android:background="#FFF"
             android:ems="10"
+            android:text="51"
             android:gravity="center"
             android:hint="Longitude" />
     </LinearLayout>
