@@ -45,6 +45,7 @@ public class WeatherActivity extends AppCompatActivity {
         temp = findViewById(R.id.weatherActivity_txt_Temp);
         press = findViewById(R.id.weatherActivity_txt_Pressure);
         humidity = findViewById(R.id.weatherActivity_txt_WindSpeed);
+        humidity = findViewById(R.id.weatherActivity_txt_Description);
     }
 
     private void getData()
