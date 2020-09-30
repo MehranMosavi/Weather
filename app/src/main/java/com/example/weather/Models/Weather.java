@@ -3,13 +3,17 @@ package com.example.weather.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.HashMap;
+import java.io.Serializable;
 
-public class Weather {
+public class Weather implements Serializable {
 
     @SerializedName("id")
     @Expose
     private int id;
+
+    @SerializedName("timezone")
+    @Expose
+    private int timezone;
 
     @SerializedName("name")
     @Expose
@@ -19,12 +23,9 @@ public class Weather {
     @Expose
     private Main main;
 
-    @SerializedName("wind")
-    @Expose
-    private Wind wind;
-
-    public Weather(int id, String name) {
+    public Weather(int id, int timezone, String name) {
         this.id = id;
+        this.timezone = timezone;
         this.name = name;
     }
 
@@ -34,6 +35,14 @@ public class Weather {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(int timezone) {
+        this.timezone = timezone;
     }
 
     public String getName() {
@@ -46,9 +55,5 @@ public class Weather {
 
     public Main getMain() {
         return main;
-    }
-
-    public Wind getWind() {
-        return wind;
     }
 }

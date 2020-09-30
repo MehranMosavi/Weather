@@ -19,41 +19,45 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.weather.Common.KEY_LAT;
-import static com.example.weather.Common.KEY_LON;
 import static com.example.weather.Common.OPENWEATHERMAP_TOKEN;
+import static com.example.weather.MainActivity.LAT_KEY;
+import static com.example.weather.MainActivity.LON_KEY;
 
 public class WeatherActivity extends AppCompatActivity {
 
+    Intent intent;
+    TextView name, temp, press, humidity;
 
-    double lat,lon;
-    TextView txtCityName, txtTemp, txtPressure, txtDescription, txtWindSpeed, txtLat, txtLon;
+    Weather weather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
-
         init();
+        getData();
+    }
 
+    private void init()
+    {
+        intent = getIntent();
+        name = findViewById(R.id.weatherActivity_txt_CityName);
+        temp = findViewById(R.id.weatherActivity_txt_Temp);
+        press = findViewById(R.id.weatherActivity_txt_Pressure);
+        humidity = findViewById(R.id.weatherActivity_txt_WindSpeed);
+    }
+
+    private void getData()
+    {
         WeatherService service = APIUtils.getWeatherService();
-        Call<Weather> call = null;
-
-        call = service.getCurrentWeather(lat,lon,OPENWEATHERMAP_TOKEN,"metric");
-
+        Call<Weather> call = service.getCurrentWeather(Double.parseDouble(intent.getStringExtra(MainActivity.LAT_KEY)), Double.parseDouble(intent.getStringExtra(MainActivity.LON_KEY)), OPENWEATHERMAP_TOKEN, "metric");
         call.enqueue(new Callback<Weather>() {
             @Override
             public void onResponse(Call<Weather> call, Response<Weather> response) {
                 if(response.isSuccessful())
                 {
-                    Weather weather = response.body();
-                    Log.d("CityName",weather.getName());
-
-                    txtCityName.setText(weather.getName());
-                    txtTemp.setText(weather.getMain().getTemp() + " ℃");
-                    txtPressure.setText(weather.getMain().getPressure() + "");
-                    txtDescription.setText("NULL");
-                    txtWindSpeed.setText(weather.getWind().getSpeed()+"");
+                    weather = response.body();
+                    setData();
                 }
                 else
                 {
@@ -63,29 +67,16 @@ public class WeatherActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Weather> call, Throwable t) {
-                Toast.makeText(WeatherActivity.this, "NOT CONNECTED", Toast.LENGTH_LONG).show();
+                Toast.makeText(WeatherActivity.this, "ERROR", Toast.LENGTH_LONG).show();
             }
         });
-
-
     }
 
-    public void init()
+    private void setData()
     {
-        txtCityName = findViewById(R.id.weatherActivity_txt_CityName);
-        txtTemp = findViewById(R.id.weatherActivity_txt_Temp);
-        txtPressure = findViewById(R.id.weatherActivity_txt_Pressure);
-        txtDescription = findViewById(R.id.weatherActivity_txt_Description);
-        txtWindSpeed = findViewById(R.id.weatherActivity_txt_WindSpeed);
-        txtLat = findViewById(R.id.weatherActivity_txt_Latitude);
-        txtLon = findViewById(R.id.weatherActivity_txt_Longitude);
-
-        Intent intent = getIntent();
-        lat = getIntent().getDoubleExtra(KEY_LAT,0);
-        lon = getIntent().getDoubleExtra(KEY_LON,0);
-
-        txtLat.setText(""+lat);
-        txtLon.setText(""+lon);
+        name.setText(weather.getName());
+        temp.setText(String.valueOf(weather.getMain().getTemp()));
+        press.setText(String.valueOf(weather.getMain().getPressure()));
+        humidity.setText(String.valueOf(weather.getMain().getHumidity()));
     }
-
 }
