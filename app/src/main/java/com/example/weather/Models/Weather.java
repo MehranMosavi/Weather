@@ -26,7 +26,6 @@ public class Weather implements Serializable {
     public Weather(int id, String name) {
         this.id = id;
         this.name = name;
-
     }
 
     public int getId() {
@@ -44,7 +43,6 @@ public class Weather implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public Main getMain() {
         return main;

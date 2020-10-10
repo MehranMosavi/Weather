@@ -64,13 +64,13 @@ public class WeatherActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(WeatherActivity.this, "ERROR", Toast.LENGTH_LONG).show();
+                    Toast.makeText(WeatherActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Weather> call, Throwable t) {
-                Toast.makeText(WeatherActivity.this, "ERROR", Toast.LENGTH_LONG).show();
+                Toast.makeText(WeatherActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
             }
         });
 
