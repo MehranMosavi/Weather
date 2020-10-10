@@ -98,7 +98,7 @@
             android:background="#FFF"
             android:ems="10"
             android:gravity="center"
-            android:text="35"
+            android:text="35.6892"
             android:hint="Latitude" />
     </LinearLayout>
 
@@ -128,7 +128,7 @@
             android:layout_margin="15dp"
             android:background="#FFF"
             android:ems="10"
-            android:text="51"
+            android:text="51.3890"
             android:gravity="center"
             android:hint="Longitude" />
     </LinearLayout>

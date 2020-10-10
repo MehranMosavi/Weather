@@ -23,6 +23,7 @@ public class Weather implements Serializable {
     @Expose
     private Wind wind;
 
+
     public Weather(int id, String name) {
         this.id = id;
         this.name = name;
@@ -51,4 +52,5 @@ public class Weather implements Serializable {
     public Wind getWind() {
         return wind;
     }
+
 }
