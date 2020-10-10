@@ -49,6 +49,9 @@ public class WeatherActivity extends AppCompatActivity {
         call.enqueue(new Callback<Weather>() {
             @Override
             public void onResponse(Call<Weather> call, Response<Weather> response) {
+
+                Log.d("MMM","TEST");
+
                 if(response.isSuccessful())
                 {
                     Weather weather = response.body();
@@ -57,10 +60,12 @@ public class WeatherActivity extends AppCompatActivity {
                     txtPress.setText(String.valueOf(weather.getMain().getPressure()));
                     txtDescription.setText("Null");
                     txtWindSpeed.setText(String.valueOf(weather.getWind().getSpeed()));
-                    if (tvUnit.toString() == "metric")
+                    if (tvUnit.toString() == "metric") {
                         txtTemp.setText(String.valueOf(weather.getMain().getTemp()) + " ℃");
-                    else
+                    }
+                    else{
                         txtTemp.setText(String.valueOf(weather.getMain().getTemp()) + " °F");
+                    }
                 }
                 else
                 {
