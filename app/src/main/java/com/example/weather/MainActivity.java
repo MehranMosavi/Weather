@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
     EditText etLat, etLon;
     ToggleButton tbLang, tbUnit, tbLat, tbLon;
     Button button;
-    String tvLang = null;
-    String tvUnit = null;
+    static String tvLang = null;
+    static String tvUnit = null;
     Double lat, lon;
 
     @Override
@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(LAT_KEY, lat);
                 intent.putExtra(LON_KEY, lon);
 
-                Log.d("MMM", "Test");
+                Log.d("MMM", tvUnit.toString());
+                Log.d("MMM", tvLang.toString());
 
                 startActivity(intent);
             }

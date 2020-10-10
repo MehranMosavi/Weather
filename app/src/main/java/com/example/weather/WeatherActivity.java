@@ -19,11 +19,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.weather.Common.LANG_KEY;
 import static com.example.weather.Common.OPENWEATHERMAP_TOKEN;
 import static com.example.weather.Common.LAT_KEY;
 import static com.example.weather.Common.LON_KEY;
-import static com.example.weather.Common.UNIT_KEY;
+import static com.example.weather.MainActivity.tvLang;
+import static com.example.weather.MainActivity.tvUnit;
 
 public class WeatherActivity extends AppCompatActivity {
 
@@ -37,6 +37,7 @@ public class WeatherActivity extends AppCompatActivity {
     TextView txtLon;
     Double lat,lon;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,7 @@ public class WeatherActivity extends AppCompatActivity {
         init();
 
         WeatherService service = APIUtils.getWeatherService();
-        Call<Weather> call = service.getCurrentWeather(lat, lon, OPENWEATHERMAP_TOKEN, "metric");
+        Call<Weather> call = service.getCurrentWeather(lat,lon,OPENWEATHERMAP_TOKEN,tvUnit,tvLang);
         call.enqueue(new Callback<Weather>() {
             @Override
             public void onResponse(Call<Weather> call, Response<Weather> response) {
@@ -53,10 +54,13 @@ public class WeatherActivity extends AppCompatActivity {
                     Weather weather = response.body();
 
                     txtName.setText(weather.getName());
-                    txtTemp.setText(String.valueOf(weather.getMain().getTemp()));
                     txtPress.setText(String.valueOf(weather.getMain().getPressure()));
                     txtDescription.setText("Null");
                     txtWindSpeed.setText(String.valueOf(weather.getWind().getSpeed()));
+                    if (tvUnit.toString() == "metric")
+                        txtTemp.setText(String.valueOf(weather.getMain().getTemp()) + " ℃");
+                    else
+                        txtTemp.setText(String.valueOf(weather.getMain().getTemp()) + " °F");
                 }
                 else
                 {
